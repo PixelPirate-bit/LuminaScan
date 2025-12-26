@@ -24,6 +24,10 @@ parser.add_argument("--content", action="store_true", help="Determine if API or 
 parser.add_argument("--all", action="store_true", help="Show all information")
 parser.add_argument("--method", choices=["get", "post", "put", "delete"], default="get", help="HTTP method to use (default: get)")
 parser.add_argument("--timeout", default="easy", help="Set delay between requests: easy (1s), medium (3s), hard (5s)")
+parser.add_argument(
+    "--data",
+    help="JSON payload for POST/PUT requests"
+)
 args = parser.parse_args()
 
 #tempo
@@ -116,15 +120,24 @@ if args.all:
 
 # HTTP Method with payload input
 payload = {}
-if args.method.lower() in ["post", "put"]:
-    user_input = input("Digite o payload JSON (ex: {\"key\":\"value\"}): ").strip()
-    if user_input:
-        try:
-            payload = json.loads(user_input)
-        except json.JSONDecodeError:
-            print("JSON inválido, usando payload vazio {}")
-            payload = {}
 
+if args.method.lower() in ["post", "put"]:
+    if args.data:
+        try:
+            payload = json.loads(args.data)
+        except json.JSONDecodeError:
+            print("Invalid JSON in --data, using empty payload {}")
+            payload = {}
+    else:
+        user_input = input('Enter JSON payload (e.g. {"key":"value"}): ').strip()
+        if user_input:
+            try:
+                payload = json.loads(user_input)
+            except json.JSONDecodeError:
+                print("Invalid JSON, using empty payload {}")
+                payload = {}
+
+# Requests
 if args.method.lower() == "get":
     time.sleep(delay)
     response = requests.get(url, headers=ninja, timeout=4)
