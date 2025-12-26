@@ -1,6 +1,6 @@
 import requests
 import pyfiglet
-import colorama 
+import colorama
 from colorama import Fore, Style
 import json
 import argparse
