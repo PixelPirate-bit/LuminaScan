@@ -1,24 +1,19 @@
-# \&nbsp;
+REQ-HTML
 
-# \*\*REQ-HTML\*\*
+REQ-HTML is a Python tool created to analyze websites and APIs in a fast and practical way. It allows you to check headers, status codes, cookies, JSON responses, and much more, all directly from the terminal.
 
-# REQ-HTML is a Python tool created to analyze websites and APIs in a fast and practical way. It allows you to check headers, status codes, cookies, JSON responses, and much more, all directly from the terminal.
+Installation
 
-# Installation
+ 
 
-# 
+Linux / Termux
 
-# Linux / Termux
+bash
 
-# 
+git clone https://github.com/PixelPirate-bit/tool-REQ-HTML.git
 
-# bash
+cd tool-REQ-HTML
 
-# git clone https://github.com/PixelPirate-bit/tool-REQ-HTML.git
+chmod +x install.sh
 
-# cd tool-REQ-HTML
-
-# chmod +x install.sh
-
-# ./install.sh
-
+./install.sh
