@@ -15,9 +15,9 @@ from requests.exceptions import (
     RequestException
 )
 parser = argparse.ArgumentParser(
-    description="REQ-HTML - Simple HTTP Analyzer"
+    description="LuminaScan - Simple HTTP Analyzer"
 )
-alien = pyfiglet.figlet_format("REQ-HTML", font="smslant")
+alien = pyfiglet.figlet_format("LuminaScan", font="smslant")
 print(Fore.GREEN + alien + Style.RESET_ALL)
 
 parser.add_argument("url", help="Target URL")
