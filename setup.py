@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="req-html",
-    version="1.0.0",
+    version="1.0.1",
     author="PixelPirate-bit",
     description="Tool to analyze website and APIs via HTTP requests",
     long_description=open("README.md", encoding="utf-8").read(),

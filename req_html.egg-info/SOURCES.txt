@@ -1,6 +1,8 @@
 LICENSE
 README.md
 setup.py
+req_html/__init__.py
+req_html/main.py
 req_html.egg-info/PKG-INFO
 req_html.egg-info/SOURCES.txt
 req_html.egg-info/dependency_links.txt
