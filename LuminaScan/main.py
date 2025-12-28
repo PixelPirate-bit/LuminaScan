@@ -123,6 +123,10 @@ def main():
         "Accept-Encoding": "gzip, deflate",
         "Connection": "keep-alive"
     }
+    # Banner
+    if args.banner:
+        alien = pyfiglet.figlet_format("LuminaScan", font="smslant")
+        print(Fore.GREEN + alien + Style.RESET_ALL)
 
     # All flags
     if args.all:
@@ -286,10 +290,7 @@ def main():
     print(f"\n[~] Avg response time: {response.elapsed.total_seconds()}s")
     print("-----------------------------------")
 
-    #banner flag
-    if args.banner:
-        alien = pyfiglet.figlet_format("LuminaScan", font="smslant")
-        print(Fore.GREEN + alien + Style.RESET_ALL)
+
 
 
 # Entry point
