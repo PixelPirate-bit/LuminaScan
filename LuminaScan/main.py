@@ -15,7 +15,7 @@ from requests.exceptions import (
     RequestException
 )
 
-# Funções ficam do jeito que estão
+# fingerprint detection function
 def detectar_fingerprint(headers):
     h = {k.lower(): v.lower() for k, v in headers.items()}
     resultado = []
@@ -71,7 +71,7 @@ def analisar_security_headers(headers):
         nivel = "High"
     return {"Found": encontrados, "Total": total, "Security Level": nivel}
 
-# Main function contendo todo o código que era executável
+# Main function
 def main():
     parser = argparse.ArgumentParser(
         description="LuminaScan - Simple HTTP Analyzer"
