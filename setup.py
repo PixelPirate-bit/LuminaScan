@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="LuminaScan",
-    version="1.0.2",
+    version="1.0.3",
     author="PixelPirate-bit-2",
     description="Tool to analyze website and APIs via HTTP requests",
     long_description=open("README.md", encoding="utf-8").read(),

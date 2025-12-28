@@ -92,6 +92,7 @@ def main():
     parser.add_argument("--method", choices=["get", "post", "put", "delete"], default="get", help="HTTP method to use (default: get)")
     parser.add_argument("--timeout", default="easy", help="Set delay between requests: easy (1s), medium (3s), hard (5s)")
     parser.add_argument("--data", help="JSON payload for POST/PUT requests")
+    parser.add_argument("--http-complete", action="store_true", help="Show status for all payloads")
     args = parser.parse_args()
 
     # tempo
@@ -174,9 +175,27 @@ def main():
         print(f"[ERROR] Unexpected request error: {e}")
         exit(1)
 
-    print(f"\n-------HTTP METHOD: {args.method.upper()}-------")
+    print(f"\n-------HTTP METHOD SUMMARY: {args.method.upper()}-------")
     print(f"Status: {response.status_code}")
     print(f"Response Time: {response.elapsed.total_seconds()}s\n")
+
+    results = []
+
+    for i, pay in enumerate(payload, start=1):
+        try:
+            r = requests.post(url, json=pay, timeout=delay)
+            status = r.status_code
+        except requests.exceptions.Timeout:
+            status = "TIMEOUT"
+        except requests.exceptions.RequestException:
+            status = "ERROR"
+        results.append((i, status))
+
+        if args.http_complete:
+            print(f"Payload {i}: Status {status}")
+
+    #method completo
+
 
     # Cookies
     if args.cookies:
