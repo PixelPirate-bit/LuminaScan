@@ -153,7 +153,7 @@ def main():
 
     # Requests
     try:
-        time.sleep(delay)
+
 
         if args.method.lower() == "get":
             response = requests.get(url, headers=ninja, timeout=4)
@@ -180,9 +180,9 @@ def main():
         print(f"[ERROR] Unexpected request error: {e}")
         exit(1)
 
-    print(f"\n-------HTTP METHOD SUMMARY: {args.method.upper()}-------")
-    print(f"Status: {response.status_code}")
-    print(f"Response Time: {response.elapsed.total_seconds()}s\n")
+        print(f"\n-------HTTP METHOD SUMMARY: {args.method.upper()}-------")
+        print(f"Status: {response.status_code}")
+        print(f"Response Time: {response.elapsed.total_seconds()}s\n")
 
 # Payload loop guru-friendly
     results = []
@@ -208,8 +208,7 @@ def main():
 
     # Cookies
     if args.cookies:
-        time.sleep(delay)
-        print(f"\n---------COOKIES---------")
+
         for c in response.cookies:
             print(f"{c.name} = {c.value}")
         print("\nAll cookies:", response.cookies)
@@ -218,8 +217,7 @@ def main():
 
     # Status
     if args.status:
-        time.sleep(delay)
-        print("\n---------STATUS---------")
+
         try:
             if response.status_code == 200:
                 print("[+] Active site/API - 200")
@@ -237,8 +235,7 @@ def main():
 
     # Headers
     if args.headers:
-        time.sleep(delay)
-        print("\n------------HEADERS------------")
+
         for chave, valor in response.headers.items():
             print(f"[*] Key: {chave}")
             print(f"[!] Value: {valor}")
@@ -246,14 +243,12 @@ def main():
 
     # Fingerprint
     if args.fingerprint:
-        time.sleep(delay)
-        print("\n---------FINGERPRINT---------")
+
         print(f"Possible CDN/Fingerprint: {', '.join(detectar_fingerprint(response.headers))}")
 
     # JSON
     if args.json:
-        time.sleep(delay)
-        print("\n--------------JSON-----------------")
+
         try:
             print(json.dumps(response.json(), indent=4))
         except ValueError:
@@ -261,8 +256,7 @@ def main():
 
     # Redirects
     if args.redirects:
-        time.sleep(delay)
-        print("\n-----------REDIRECT---------------")
+
         print(f"Final URL after redirects: {response.url}")
         print(f"Number of redirects: {len(response.history)}")
         for resp in response.history:
@@ -270,8 +264,7 @@ def main():
 
     # Content type
     if args.content:
-        time.sleep(delay)
-        print("\n----------API OR SITE---------------")
+
         content_type = response.headers.get("Content-Type", "").lower()
         if "application/json" in content_type:
             print("[+] API detected (JSON response)")
@@ -282,13 +275,11 @@ def main():
 
     # Security headers
     if args.security:
-        time.sleep(delay)
-        print("\n-------SECURITY HEADERS-------")
-        time.sleep(delay)
+
         print(analisar_security_headers(response.headers))
 
     print(f"\n[~] Avg response time: {response.elapsed.total_seconds()}s")
-    print("-----------------------------------")
+    
 
 
 
